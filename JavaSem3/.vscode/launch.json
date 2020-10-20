@@ -1,0 +1,160 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - lanbda_1",
+            "request": "launch",
+            "mainClass": "lanbda_1",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - amitwqdw",
+            "request": "launch",
+            "mainClass": "amitwqdw",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Z",
+            "request": "launch",
+            "mainClass": "Z",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - run",
+            "request": "launch",
+            "mainClass": "run",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Demo",
+            "request": "launch",
+            "mainClass": "Demo",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Test",
+            "request": "launch",
+            "mainClass": "Test",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - timing",
+            "request": "launch",
+            "mainClass": "timing",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - datetime",
+            "request": "launch",
+            "mainClass": "datetime",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - space",
+            "request": "launch",
+            "mainClass": "space",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ex",
+            "request": "launch",
+            "mainClass": "ex",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - hell",
+            "request": "launch",
+            "mainClass": "hell",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - cgpa",
+            "request": "launch",
+            "mainClass": "cgpa",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - cn",
+            "request": "launch",
+            "mainClass": "cn",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - am",
+            "request": "launch",
+            "mainClass": "am",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - call",
+            "request": "launch",
+            "mainClass": "call",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - choice",
+            "request": "launch",
+            "mainClass": "choice",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - exm",
+            "request": "launch",
+            "mainClass": "exm",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - pattern",
+            "request": "launch",
+            "mainClass": "pattern",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - hello",
+            "request": "launch",
+            "mainClass": "hello",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-amit<JavaSem3_fe4141fc>",
+            "request": "launch",
+            "mainClass": "amit",
+            "projectName": "JavaSem3_fe4141fc"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-amit",
+            "request": "launch",
+            "mainClass": "amit"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+Case #1: zero 
+Case #2: zero zero 
+Case #3: triple zero triple one zero zero 
+Case #1: zero 
+Case #2: triple zero zero 
+Case #3: 
+Case #1: zero 
+Case #2: triple zero zero 
+Case #3: 
+Case #1: zero 
+Case #2: triple zero zero 
