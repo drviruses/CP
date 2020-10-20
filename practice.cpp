@@ -51,6 +51,7 @@ const int inf = 1e18;
 
 
 void virus(){
+    cout << "ammm";
         cout << "amit";
         string a, b;
         cin >> a >> b;
