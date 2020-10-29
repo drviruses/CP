@@ -12,8 +12,8 @@ using namespace std::chrono;
 #define int      long long
 #define double   long double
 #define uint     unsigned long long
-#define endl "\n"
 #define all(vec) vec.begin(),vec.end()
+#define endl "\n"
 int google_itr = 1;
 #define google(x) cout<<"Case #"<<x<<": "
 #define pi 3.14159265358979323846264338327950L
@@ -46,63 +46,56 @@ void debug_out(vector<string> args, int idx, int LINE_NUM, Head H, Tail... T) {
     #define deb(...) 42
 #endif
 
-
 const int mod = 1e9+7;
 const int inf = 1e18;
 
-pair<int, int> myfactor(int n) {
-            vector <pair<int, int>> t;
-            int count = 0; 
-            while (!(n % 2)) { 
-                n >>= 1; 
-                count++; 
-            }  
-            if (count) t.push_back({2,count}) ; 
-        
-            for (auto  i = 3; i <= sqrt(n); i += 2) { 
-                count = 0; 
-                while (n % i == 0) { 
-                    count++; 
-                    n = n / i; 
-                } 
-                if (count) t.push_back({i,count}) ;
-            }  
-            if (n > 2) 
-                t.push_back({n,1}) ;
-            
-            auto mySort = [&](pair<int, int>& a, pair<int, int>& b) {
-                return a.first > b.first;
-            };
-            sort(all(t), mySort);
-            return t[0];
-}
 
 void virus(){
-        int n, p;
-        cin >> n >> p;
-
-        vector <int> arr(n);
-        for(auto &i : arr) cin >> i;
-
-        sort(all(arr), greater <int>());
-        vector <pair<pair<int, int>,int>> s;
-
-        int ans = -1, tim = 0, dans = -1, lar = -1;
+        deque <int> d;
+        int n;
+        cin >> n;
         for(auto i=0; i<n; i++) {
-            pair<int, int> large = myfactor(arr[i]);
-            if(large.first <= p ) {
-                s.push_back({large, arr[i]});
+            int v;
+            cin >> v;
+            if(i == 0) d.push_back(v);
+            else if(i == 1) {
+                d.push_back(v);
             }
-        } 
-        auto mySort = [&](pair<pair<int, int>,int>& a, pair<pair<int, int>,int>& b) {
-            if(a.first.first == b.first.first ) return a.first.second > b.first.second;
-                return a.first.first > b.first.first;
-            };
-        sort(all(s), mySort);
-        if(s.size() == 0) cout << -1 << endl;
-        else
-        cout << s[0].second << endl;
-
+            else d.insert(d.begin() + d.size()/2 + 1, v);
+        }
+        
+        int q;
+        cin >> q;
+        while(q--) {
+            int typ;
+            cin >> typ;
+            if(typ == 1) {
+                int c;
+                cin >> c;
+                if(!d.empty()) d.insert(d.begin() + d.size()/2 + 1, c);
+                else d.push_back(c);
+            }
+            else if(typ == 2){
+                if(!d.empty()) d.pop_front();
+            }
+            else if(typ == 3){
+                if(!d.empty()) d.pop_back();
+            }
+            else if(typ == 4){
+                if(!d.empty()) d.erase(d.begin() + d.size()/2);
+            }
+            else if(typ == 5){
+                if(!d.empty()) cout << d.front() << endl;
+            }
+            else if(typ == 6){
+                if(!d.empty()) cout << d.back() << endl;
+            }
+            else if(typ == 7){
+                if(!d.empty()) cout << d[d.size()/2] << endl;
+            }
+            /* for(auto i:d) cout << i << " ";
+            cout << endl; */
+        }
 }
 
 
@@ -115,7 +108,7 @@ int32_t main(){
     freopen("input.txt","r",stdin);
     freopen("output.txt","w",stdout);
     #endif*/
-   // sieve();
+
     int t = 1;
     //cin >> t;
     while(t--){
@@ -123,7 +116,7 @@ int32_t main(){
            virus();
            auto stop = high_resolution_clock::now();
            auto duration = duration_cast<seconds>(stop - start);
-           //cerr << "\nTime: "<<duration.count()<<endl;
+           //cerr << "\n Time: "<<duration.count()<<endl;
         //your code goes here
     }
     return 0;

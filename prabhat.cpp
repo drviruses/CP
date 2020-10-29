@@ -12,8 +12,8 @@ using namespace std::chrono;
 #define int      long long
 #define double   long double
 #define uint     unsigned long long
-#define endl "\n"
 #define all(vec) vec.begin(),vec.end()
+#define endl "\n"
 int google_itr = 1;
 #define google(x) cout<<"Case #"<<x<<": "
 #define pi 3.14159265358979323846264338327950L
@@ -46,62 +46,41 @@ void debug_out(vector<string> args, int idx, int LINE_NUM, Head H, Tail... T) {
     #define deb(...) 42
 #endif
 
-
 const int mod = 1e9+7;
 const int inf = 1e18;
 
-pair<int, int> myfactor(int n) {
-            vector <pair<int, int>> t;
-            int count = 0; 
-            while (!(n % 2)) { 
-                n >>= 1; 
-                count++; 
-            }  
-            if (count) t.push_back({2,count}) ; 
-        
-            for (auto  i = 3; i <= sqrt(n); i += 2) { 
-                count = 0; 
-                while (n % i == 0) { 
-                    count++; 
-                    n = n / i; 
-                } 
-                if (count) t.push_back({i,count}) ;
-            }  
-            if (n > 2) 
-                t.push_back({n,1}) ;
-            
-            auto mySort = [&](pair<int, int>& a, pair<int, int>& b) {
-                return a.first > b.first;
-            };
-            sort(all(t), mySort);
-            return t[0];
-}
 
 void virus(){
-        int n, p;
-        cin >> n >> p;
+        string sTime;
+        cin  >> sTime;
+        
+        if(sTime[0] == '-') {
+            cout << "INVALID INPUT"; return;
+        }
 
-        vector <int> arr(n);
-        for(auto &i : arr) cin >> i;
+        int hh = stoi(sTime.substr(0, 2)), mm = stoi(sTime.substr(3, 2));
 
-        sort(all(arr), greater <int>());
-        vector <pair<pair<int, int>,int>> s;
-
-        int ans = -1, tim = 0, dans = -1, lar = -1;
-        for(auto i=0; i<n; i++) {
-            pair<int, int> large = myfactor(arr[i]);
-            if(large.first <= p ) {
-                s.push_back({large, arr[i]});
+        int sum[] = {0, 4, 9, 15, 19, 22};
+        for(auto i:sum) {
+            string hA = "", mS = "";
+            int min = mm + i;
+            if(min >= 60){
+                mS = "00";
+                hh++;
             }
-        } 
-        auto mySort = [&](pair<pair<int, int>,int>& a, pair<pair<int, int>,int>& b) {
-            if(a.first.first == b.first.first ) return a.first.second > b.first.second;
-                return a.first.first > b.first.first;
-            };
-        sort(all(s), mySort);
-        if(s.size() == 0) cout << -1 << endl;
-        else
-        cout << s[0].second << endl;
+            if(hh == 24){
+                hA = "00"; hh = 0;
+            }
+            string tH = to_string(hh) , tM = to_string(min);
+            if(tH.size() == 1) tH.insert(tH.begin(), '0');
+            if(tM.size() == 1) tM.insert(tM.begin(), '0');
+
+            if(hA == "00") cout << hA << ".";
+            else cout << tH << ".";
+            if(mS == "00") cout << mS << "";
+            else cout << tM; 
+            cout << " ";
+        }
 
 }
 
@@ -115,7 +94,7 @@ int32_t main(){
     freopen("input.txt","r",stdin);
     freopen("output.txt","w",stdout);
     #endif*/
-   // sieve();
+
     int t = 1;
     //cin >> t;
     while(t--){
@@ -123,7 +102,7 @@ int32_t main(){
            virus();
            auto stop = high_resolution_clock::now();
            auto duration = duration_cast<seconds>(stop - start);
-           //cerr << "\nTime: "<<duration.count()<<endl;
+           //cerr << "\n Time: "<<duration.count()<<endl;
         //your code goes here
     }
     return 0;

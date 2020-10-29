@@ -50,59 +50,16 @@ void debug_out(vector<string> args, int idx, int LINE_NUM, Head H, Tail... T) {
 const int mod = 1e9+7;
 const int inf = 1e18;
 
-pair<int, int> myfactor(int n) {
-            vector <pair<int, int>> t;
-            int count = 0; 
-            while (!(n % 2)) { 
-                n >>= 1; 
-                count++; 
-            }  
-            if (count) t.push_back({2,count}) ; 
-        
-            for (auto  i = 3; i <= sqrt(n); i += 2) { 
-                count = 0; 
-                while (n % i == 0) { 
-                    count++; 
-                    n = n / i; 
-                } 
-                if (count) t.push_back({i,count}) ;
-            }  
-            if (n > 2) 
-                t.push_back({n,1}) ;
-            
-            auto mySort = [&](pair<int, int>& a, pair<int, int>& b) {
-                return a.first > b.first;
-            };
-            sort(all(t), mySort);
-            return t[0];
-}
 
 void virus(){
-        int n, p;
-        cin >> n >> p;
-
-        vector <int> arr(n);
-        for(auto &i : arr) cin >> i;
-
-        sort(all(arr), greater <int>());
-        vector <pair<pair<int, int>,int>> s;
-
-        int ans = -1, tim = 0, dans = -1, lar = -1;
-        for(auto i=0; i<n; i++) {
-            pair<int, int> large = myfactor(arr[i]);
-            if(large.first <= p ) {
-                s.push_back({large, arr[i]});
-            }
-        } 
-        auto mySort = [&](pair<pair<int, int>,int>& a, pair<pair<int, int>,int>& b) {
-            if(a.first.first == b.first.first ) return a.first.second > b.first.second;
-                return a.first.first > b.first.first;
-            };
-        sort(all(s), mySort);
-        if(s.size() == 0) cout << -1 << endl;
-        else
-        cout << s[0].second << endl;
-
+        int l,r;
+    cin >> l >> r;
+    if(l*2>=r+1){
+        printf("YES\n");
+    }
+    else{
+        printf("NO\n");
+    };
 }
 
 
@@ -111,13 +68,13 @@ int32_t main(){
     cin.tie(0);
     cout.tie(0);
     
-  /*#ifndef ONLINE_JUDGE
-    freopen("input.txt","r",stdin);
-    freopen("output.txt","w",stdout);
-    #endif*/
-   // sieve();
-    int t = 1;
-    //cin >> t;
+    #ifndef ONLINE_JUDGE
+    freopen("hack1.txt","r",stdin);
+    freopen("mine.txt","w",stdout);
+    #endif
+
+    int t;
+    cin >> t;
     while(t--){
            auto start = high_resolution_clock::now();
            virus();

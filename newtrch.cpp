@@ -18,6 +18,8 @@ int google_itr = 1;
 #define google(x) cout<<"Case #"<<x<<": "
 #define pi 3.14159265358979323846264338327950L
 
+
+
 vector<string> vec_splitter(string s) {
         s += ',';
         vector<string> res;
@@ -50,59 +52,34 @@ void debug_out(vector<string> args, int idx, int LINE_NUM, Head H, Tail... T) {
 const int mod = 1e9+7;
 const int inf = 1e18;
 
-pair<int, int> myfactor(int n) {
-            vector <pair<int, int>> t;
-            int count = 0; 
-            while (!(n % 2)) { 
-                n >>= 1; 
-                count++; 
-            }  
-            if (count) t.push_back({2,count}) ; 
-        
-            for (auto  i = 3; i <= sqrt(n); i += 2) { 
-                count = 0; 
-                while (n % i == 0) { 
-                    count++; 
-                    n = n / i; 
-                } 
-                if (count) t.push_back({i,count}) ;
-            }  
-            if (n > 2) 
-                t.push_back({n,1}) ;
-            
-            auto mySort = [&](pair<int, int>& a, pair<int, int>& b) {
-                return a.first > b.first;
-            };
-            sort(all(t), mySort);
-            return t[0];
-}
 
 void virus(){
-        int n, p;
-        cin >> n >> p;
+        int n, m;
+        cin >> n >> m;
 
-        vector <int> arr(n);
-        for(auto &i : arr) cin >> i;
+        vector <int> col(n*m+1), row(n*m+1);
 
-        sort(all(arr), greater <int>());
-        vector <pair<pair<int, int>,int>> s;
-
-        int ans = -1, tim = 0, dans = -1, lar = -1;
+        vector <vector<int>> fir(n, vector <int>(m));
         for(auto i=0; i<n; i++) {
-            pair<int, int> large = myfactor(arr[i]);
-            if(large.first <= p ) {
-                s.push_back({large, arr[i]});
+            for(auto j=0; j<m; j++) {
+                cin >> fir[i][j]; col[fir[i][j]] = j;
             }
-        } 
-        auto mySort = [&](pair<pair<int, int>,int>& a, pair<pair<int, int>,int>& b) {
-            if(a.first.first == b.first.first ) return a.first.second > b.first.second;
-                return a.first.first > b.first.first;
-            };
-        sort(all(s), mySort);
-        if(s.size() == 0) cout << -1 << endl;
-        else
-        cout << s[0].second << endl;
+        }
 
+        vector <vector<int>> sec(m, vector <int>(n));
+        for(auto i=0; i<m; i++) {
+            for(auto j=0; j<n; j++) {
+                cin >> sec[i][j]; row[sec[i][j]] = j;
+            }
+        }
+
+        vector <vector<int>> ans(n, vector<int>(m));
+        for(auto i=1; i<=m*n; i++) ans[row[i]][col[i]] = i;
+
+        for(auto i=0; i<n; i++) {
+            for(auto j=0; j<m; j++) cout << ans[i][j] << " ";
+            cout << endl;
+        }
 }
 
 
@@ -115,9 +92,9 @@ int32_t main(){
     freopen("input.txt","r",stdin);
     freopen("output.txt","w",stdout);
     #endif*/
-   // sieve();
-    int t = 1;
-    //cin >> t;
+
+    int t;
+    cin >> t;
     while(t--){
            auto start = high_resolution_clock::now();
            virus();

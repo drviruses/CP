@@ -25,14 +25,13 @@ const ll inf = 1e18;
 void virus(){
     std::random_device rd; // obtain a random number from hardware
     std::mt19937 gen(rd()); // seed the generator
-    std::uniform_int_distribution<> distr(1,5); // define the range
-    std::uniform_int_distribution<> distrsec(1,1000);
-    cout << 99999 << endl;
-    for(int n=0; n<99999 ; ++n){
-        ll typ = distr(gen);
-        cout<<typ;
-        if(typ == 1) cout<<" "<<distrsec(gen);
-        cout<<endl;
+    std::uniform_int_distribution<> distr(1,100000000); // define the range
+    std::uniform_int_distribution<> distrsec(1,100000000);
+    cout << 1000000 << endl;
+    for(int n=0; n<1000000 ; ++n){
+        int l = distr(gen), r = distrsec(gen);
+        if(l <= r)
+        cout << l << " " << r << endl;
     }
 }
 
@@ -42,10 +41,8 @@ int32_t main(){
     cin.tie(0);
     cout.tie(0);
     
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt","r",stdin);
-    freopen("outputLimakandTest.txt","w",stdout);
-    #endif
+    freopen("hack1.txt","w",stdout);
+
 
     ll t = 1;
     //cin>>t;

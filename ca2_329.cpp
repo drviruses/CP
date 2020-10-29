@@ -12,8 +12,8 @@ using namespace std::chrono;
 #define int      long long
 #define double   long double
 #define uint     unsigned long long
-#define endl "\n"
 #define all(vec) vec.begin(),vec.end()
+#define endl "\n"
 int google_itr = 1;
 #define google(x) cout<<"Case #"<<x<<": "
 #define pi 3.14159265358979323846264338327950L
@@ -46,63 +46,64 @@ void debug_out(vector<string> args, int idx, int LINE_NUM, Head H, Tail... T) {
     #define deb(...) 42
 #endif
 
-
 const int mod = 1e9+7;
 const int inf = 1e18;
+const int mx = 1e8+4;
+vector<int> mypreprocess(1e5+4);
 
-pair<int, int> myfactor(int n) {
-            vector <pair<int, int>> t;
-            int count = 0; 
-            while (!(n % 2)) { 
-                n >>= 1; 
-                count++; 
-            }  
-            if (count) t.push_back({2,count}) ; 
-        
-            for (auto  i = 3; i <= sqrt(n); i += 2) { 
-                count = 0; 
-                while (n % i == 0) { 
-                    count++; 
-                    n = n / i; 
-                } 
-                if (count) t.push_back({i,count}) ;
-            }  
-            if (n > 2) 
-                t.push_back({n,1}) ;
-            
-            auto mySort = [&](pair<int, int>& a, pair<int, int>& b) {
-                return a.first > b.first;
-            };
-            sort(all(t), mySort);
-            return t[0];
-}
-
-void virus(){
-        int n, p;
-        cin >> n >> p;
-
-        vector <int> arr(n);
-        for(auto &i : arr) cin >> i;
-
-        sort(all(arr), greater <int>());
-        vector <pair<pair<int, int>,int>> s;
-
-        int ans = -1, tim = 0, dans = -1, lar = -1;
-        for(auto i=0; i<n; i++) {
-            pair<int, int> large = myfactor(arr[i]);
-            if(large.first <= p ) {
-                s.push_back({large, arr[i]});
-            }
+void sieve() { 
+    mypreprocess[1] = 1; 
+    for (int i=2; i<300001; i++) mypreprocess[i] = i; 
+    for (int i=4; i<300001; i+=2) mypreprocess[i] = 2; 
+    for (int i=3; i*i<300001; i++){ 
+        if (mypreprocess[i] == i) { 
+            for (int j=i*i; j<300001; j+=i) 
+                if (mypreprocess[j]==j) mypreprocess[j] = i; 
         } 
-        auto mySort = [&](pair<pair<int, int>,int>& a, pair<pair<int, int>,int>& b) {
-            if(a.first.first == b.first.first ) return a.first.second > b.first.second;
-                return a.first.first > b.first.first;
-            };
-        sort(all(s), mySort);
-        if(s.size() == 0) cout << -1 << endl;
-        else
-        cout << s[0].second << endl;
+    } 
+} 
 
+int myfactor(int N) {  
+    vector <int> t;
+    int curr = mypreprocess[N], cnt = 1; 
+    while (N > 1) { 
+        N /= mypreprocess[N]; 
+        if (curr == mypreprocess[N]){ 
+            cnt++; 
+            continue; 
+        } 
+        t.push_back(curr);
+        curr = mypreprocess[N]; 
+        cnt = 1; 
+    } 
+    return *max_element(all(t));
+} 
+void virus(){
+        int len;
+        cin >> len;
+
+        vector <int> arr(len);
+        for(auto &i : arr) cin >> i;
+        /* vector <int> poss;
+        for(auto i=0; i<len; i++) {
+            int setBit = __builtin_popcount(arr[i]);
+            if(setBit >= 2){
+                poss.push_back(arr[i]);
+            }
+        }
+        sort(all(poss), greater <int>());
+        for(auto i:poss){
+            int large = myfactor(( i * i) + 1);
+                if(large >= (i<<1)){
+                    ans.push_back(i);
+                }
+        }
+        if(ans.size() == 0) cout << -1 << endl; */ 
+        int ans = -1;
+        for(auto i:arr) {
+            if( i > ans and !(i && (!(i&(i-1))))) ans = i;
+        }
+         cout << ans << endl;
 }
 
 
@@ -115,7 +116,7 @@ int32_t main(){
     freopen("input.txt","r",stdin);
     freopen("output.txt","w",stdout);
     #endif*/
-   // sieve();
+    //sieve();
     int t = 1;
     //cin >> t;
     while(t--){
@@ -123,7 +124,7 @@ int32_t main(){
            virus();
            auto stop = high_resolution_clock::now();
            auto duration = duration_cast<seconds>(stop - start);
-           //cerr << "\nTime: "<<duration.count()<<endl;
+           //cerr << "\n Time: "<<duration.count()<<endl;
         //your code goes here
     }
     return 0;
