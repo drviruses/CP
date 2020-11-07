@@ -2,5 +2,8 @@
     "files.associations": {
         "bitset": "cpp",
         "string_view": "cpp"
-    }
+    } 
+    
+    "editor.fontSize": 16 
+    
 }
