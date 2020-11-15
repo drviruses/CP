@@ -12,8 +12,8 @@ using namespace std::chrono;
 #define int      long long
 #define double   long double
 #define uint     unsigned long long
-#define all(vec) vec.begin(),vec.end()
 #define endl "\n"
+#define all(vec) vec.begin(),vec.end()
 int google_itr = 1;
 #define google(x) cout<<"Case #"<<x<<": "
 #define pi 3.14159265358979323846264338327950L
@@ -46,58 +46,33 @@ void debug_out(vector<string> args, int idx, int LINE_NUM, Head H, Tail... T) {
     #define deb(...) 42
 #endif
 
+
 const int mod = 1e9+7;
 const int inf = 1e18;
 
 
 void virus(){
-        string s;
-        cin >> s;
+        int n;
+        cin >> n;
 
-        int x1, y1, x2, y2;
-        cin >> x1 >> y1 >> x2 >> y2;
+        vector <int> a(n);
+        for(auto &i:a) cin >> i;
 
-        if(x1 == x2 and y1 == y2) {
-            cout << 0; return;
-        }
+        int sum = accumulate(all(a), 0LL);
+        int lowLim = sum/n;
+        int highLim = lowLim + 1;
 
-        int up = 0, down = 0, right = 0, left = 0;
-        if(y2 >= y1) up = abs(y2 - y1);
-        else down = abs(y1 - y2);
-        
-        if(x2 >= x1) right = abs(x2 - x1);
-        else left = abs(x1 - x2);
-
-        //deb(up, down, right, left);
-
-        int n = (int)s.size(), cup = 0, cdown = 0, cright = 0, cleft = 0;
+        vector <int> b(all(a));
+        int firMin = 0, left = 0, ans = 0;
         for(auto i=0; i<n; i++) {
-                bool upin = true, downin = true, rightin = true, leftin = true;
-                if(s[i] == '#') cdown++;
-                if(s[i] == '@') cup++;
-                if(s[i] == '$') cright++;
-                if(s[i] == '&') cleft++;
-                if(up) {
-                    if(cup == up) upin = true;
-                    else upin = false;
-                }
-                if(down) {
-                    if(cdown == down) downin = true;
-                    else downin =false;
-                }
-                if(right) {
-                    if(cright == right) rightin = true;
-                    else rightin = false;
-                }
-                if(left) {
-                    if(cleft == left) leftin = true;
-                    else leftin = false;
-                }
-                if(upin and downin and leftin and rightin) {
-                    cout << i+1; return;
-                }
+            if(b[i] > lowLim) left += (b[i] - lowLim) , ans += (b[i] - lowLim);
+            else if(b[i] < lowLim and left >= (lowLim - b[i])) {
+                int t = min(left, (lowLim - b[i]));
+                b[i] += t; left -= t;
+            }
+            
         }
-        cout << -1;
+        cout << ans + (n - (sum%n)) << endl;
 }
 
 
@@ -111,14 +86,14 @@ int32_t main(){
     freopen("output.txt","w",stdout);
     #endif*/
 
-    int t = 1;
-    //cin >> t;
+    int t;
+    cin >> t;
     while(t--){
            auto start = high_resolution_clock::now();
            virus();
            auto stop = high_resolution_clock::now();
            auto duration = duration_cast<seconds>(stop - start);
-           //cerr << "\n Time: "<<duration.count()<<endl;
+           //cerr << "\nTime: "<<duration.count()<<endl;
         //your code goes here
     }
     return 0;
